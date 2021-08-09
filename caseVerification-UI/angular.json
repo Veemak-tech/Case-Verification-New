@@ -66,8 +66,9 @@
               "node_modules/chart.js/dist/Chart.js",
               "node_modules/hammerjs/hammer.min.js",
               "src/assets/js/search.js",
-              "src/assets/js/dropzone-amd-module.js"
-
+              "src/assets/js/dropzone-amd-module.js",
+              "node_modules/jspdf/dist/jspdf.es.min.js",
+              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
             ]
           },
           "configurations": {

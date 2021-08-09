@@ -35,11 +35,6 @@ import { AssignmentDashboardComponent } from './digital/assignment-dashboard/ass
 import { ChartsModule } from 'ng2-charts';
 
 
-
-
-
-
-
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   url: 'https://httpbin.org/post',

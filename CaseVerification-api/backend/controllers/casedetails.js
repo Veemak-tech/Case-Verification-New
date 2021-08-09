@@ -61,7 +61,7 @@ exports.assignments = async (req, res, next) => {
        updatedagentname: Agentname
      }
     // console.log(CasedetAgentNchange)
-     const updatecd = await casedetails.AssignCdUpdate(CasedetAgentNchange)
+     // const updatecd = await casedetails.AssignCdUpdate(CasedetAgentNchange)
  
      res.status(201).json({ message: 'User Assigned!' });
    } catch (err) {
@@ -167,7 +167,7 @@ exports.getpaging = async (req, res, next) => {
 };
 
 exports.getpagingbyuserlogged = async (req, res, next) => {
-   debugger
+
   try {
      // get page from query params or default to first page
     const pageno = parseInt(req.query.pageno) || 1;
@@ -495,6 +495,16 @@ exports.putCasedetails = async (req, res, next) => {
     
       const updateansresult = casedetails.updateQnAnswers(item)
      })
+
+     // status ID update  (In Progress)
+     const statuschange = {
+       stid : req.body.StatusID,
+       cid : req.body.CaseID
+     }
+    //  var statusid = req.body.StatusID;
+    //  statusid["CaseID"]=req.body.CaseID
+     const updatestatus = await assignments.updatestatusInprogress(statuschange)
+
 
     //  updatetpanswers.forEach ( function insanswer (item){
 

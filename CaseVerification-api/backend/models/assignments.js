@@ -89,5 +89,14 @@ module.exports = class assignments {
       return db.execute ("call numberofcasesforuser")
     }
   
+    // update status (In Progress)
+    static updatestatusInprogress (statuschange){
+      return db.execute('call updatestatusInprog(?,?)',
+      [
+        statuschange.stid,
+        statuschange.cid
+      ]
+      )
+    }
 
 }

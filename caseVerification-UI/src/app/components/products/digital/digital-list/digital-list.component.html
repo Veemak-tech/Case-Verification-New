@@ -1,6 +1,3 @@
-<br>
-<!-- <h3 class="title">Case List</h3> -->
-<br>
 
 <!-- <div class="card">
   <div class="row">
@@ -16,7 +13,6 @@
 </div>
 <br>
 </div> -->
-
 
 <!-- <div class="table-responsive">
 <table class="table table-hover">
@@ -88,12 +84,22 @@
 </table>
 </div> -->
 <!-- <button (click)="export()">Export</button> -->
-
-<div class="col-12 col-md-12 pl-0 mb-1 reload-position-adjust">
-  <button class="btn btn-outline-primary btn-md"  type="button" style="height: 37px;" (click)="reloadComponent()">
-  <i class="fa fa-refresh" aria-hidden="true"></i>
-  </button>
+<div class="col-md-1 col-3">
+  <button class="btn btn-md btn-outline-primary" (click)="createPdf()">Download PDF</button>
 </div>
+<div class="col-12 col-md-12 pl-0 m-0 row mt-1 mb-2">
+  <div class="col-md-10 col-7"></div>
+  <div class="col-md-1 col-3">
+    <button class="btn btn-md btn-outline-primary" (click)="downloadCSV()"><i class="fas fa-file-csv"></i></button>
+  </div>
+  <div class="col-md-1 col-1">
+    <button class="btn btn-outline-primary btn-md"  type="button" style="height: 37px;" (click)="reloadComponent()">
+      <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+  </div>
+
+</div>
+
 <div class="container-fluid">
   <div class="card">
       <!-- <div class="card-header">
@@ -101,11 +107,6 @@
           <i class="fas fa-user-edit"></i>
       </div> -->
       <div class="card-body vendor-table">
-
-
-
-
-
           <div id="batchDelete" class="custom-datatable vendor-list">
               <div class="table-responsive ">
 

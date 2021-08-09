@@ -116,7 +116,7 @@ module.exports = class casedetails {
   }
 
   static getpagingbyusername(pageno,pagesize,username){
-    debugger
+  
     return db.execute('CALL GetCasebyLoggedUsername(?,?,?)',[pageno,pagesize,username])
   }
 
@@ -146,7 +146,7 @@ module.exports = class casedetails {
 
   // Update Method
   static update(putResponse) {
-      debugger;
+      // debugger;
       var LastModifiedDate = moment().format('YYYY-MM-DD HH:mm:ss');
     return db.execute(
       "UPDATE casedetails SET Name=?, Description=?, InsurerVerificationNotes=?, T_VerificationNotes=?, ReferenceNumber=?, DueDate=?,LastModifiedBy=?, CaseID=?, LastModifiedDate = ? WHERE ID=?",

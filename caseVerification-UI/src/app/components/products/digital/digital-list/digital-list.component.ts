@@ -1,3 +1,4 @@
+import { ConvertCSVService } from './../../../../services/convert-csv.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { casedetails } from './../../../../models/casedetails';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
@@ -9,11 +10,9 @@ import { allIcons } from 'ngx-bootstrap-icons';
 import { multicast } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
-
-
-
-
-
+import {saveAs} from 'file-saver'
+import { jsPDF  } from 'jspdf'
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-digital-list',
@@ -21,10 +20,6 @@ import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
   styleUrls: ['./digital-list.component.scss'],
 })
 export class DigitalListComponent implements OnInit {
-
-
-
-
   pagesize = [];
   pageno: any = {};
 
@@ -36,6 +31,7 @@ export class DigitalListComponent implements OnInit {
   name: string;
   source: any;
   formula:string = "Formula 1";
+  status : any;
 
   // Get data
   constructor(
@@ -44,16 +40,13 @@ export class DigitalListComponent implements OnInit {
     private router: Router,
     private _route:ActivatedRoute,
     private userName: AuthService,
-
+    private csvservice:ConvertCSVService
   ) {
     this.user.getData().subscribe((data1) => {
       debugger
-      console.log(data1);
+     // console.log(data1);
       this.caseList = data1;
     });
-
-
-
 
     var name:string;
     this._route.queryParams.subscribe((params) => {
@@ -62,30 +55,47 @@ export class DigitalListComponent implements OnInit {
     });
 
   }
+  //downlaod pdf
+  title = 'export-table-data-to-pdf-using-jspdf-example';
+
+  head = [['ID', 'NAME', 'DESIGNATION', 'DEPARTMENT']]
+
+
+
+  createPdf() {
+    var doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text('My Team Detail', 11, 8);
+    doc.setFontSize(11);
+    doc.setTextColor(100);
+
+
+    (doc as any).autoTable({
+      head: this.head,
+      body: this.data,
+      theme: 'plain',
+      didDrawCell: data => {
+        console.log(data.column.index)
+      }
+    })
+
+    // below line for Open PDF document in new tab
+    doc.output('dataurlnewwindow')
+
+    // below line for Download PDF document
+    doc.save('myteamdetail.pdf');
+  }
 
   // export csv
-  options = {
-    fieldSeparator: ',',
-    quoteStrings: '"',
-    decimalseparator: '.',
-    showLabels: true,
-    showTitle: true,
-    title: 'Your title',
-    useBom: true,
-    noDownload: false,
-    headers: ["CaseID", "InsurerName"]
-  };
-  datas = [
-    this.pagesize,
-    {
-    CaseID:"CaseID",
-    InsurerName:"InsurerName"
-  }
-];
+  downloadCSV() {
 
-  export(){
-    new Angular5Csv(this.datas, 'My Report',this.options);
+    // var data = this.caseList[0]
+
+      this.csvservice.downloadFile(this.pagesize, 'jsontocsv');
+
   }
+
 
 
   // reload page
@@ -96,7 +106,7 @@ export class DigitalListComponent implements OnInit {
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate([currentUrl]);
-        console.log(currentUrl);
+       // console.log(currentUrl);
     });
     }
 

@@ -8,6 +8,27 @@ const thirdpartydetails = require("../models/thirdpartydetails");
 const moment = require('moment');
 const { response } = require("express");
 
+exports.searchcase = async (req,res,next) => {
+  try{
+   const searchname = {
+     insname: req.params.insname
+   } ;
+   const [searchdata] = await casedetails.searchcase(searchname)
+   const searchresults = searchdata[0] 
+   if (searchresults.length > 0){
+    res.status(200).json(searchresults);
+  }
+  else
+  {
+    res.status(500).json("no data found");
+  }
+  }catch(err){
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+}
 
 exports.fetchAll = async (req, res, next) => {
   try {

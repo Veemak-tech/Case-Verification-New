@@ -25,6 +25,14 @@ module.exports = class casedetails {
     this.LastModifiedBy = LastModifiedBy;
   }
 
+  // search case
+
+  static searchcase(searchname){
+    
+    return db.execute('CALL searchcase(?)', [searchname.insname])
+    
+  }
+
   // ins answers
 
   static postQanswers(insurerAns){

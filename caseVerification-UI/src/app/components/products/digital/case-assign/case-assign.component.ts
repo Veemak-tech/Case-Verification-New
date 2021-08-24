@@ -346,8 +346,8 @@ export class CaseAssignComponent implements OnInit {
             list: [
               { value: 'Assigned', title:'Assigned' },
               { value: 'In Progress', title:'In Progress'},
-              { value:'Pending', title:'Pending'},
-              { value:'Not Assigned', title:'Not Assigned'}
+              { value:'Completed', title:'Completed'},
+             // { value:'Not Assigned', title:'Not Assigned'}
             ],
           },
         },

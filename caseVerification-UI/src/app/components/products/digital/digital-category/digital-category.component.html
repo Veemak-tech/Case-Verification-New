@@ -62,7 +62,8 @@
               <label for="name" class="col-form-label col-sm-3 text-align">Due date:</label>
               <div class="col-sm-6 p-adjust-mob">
                 <input type="date" value="12-12-2012" class="form-control" formControlName="DueDate" name="DueDate"
-                  id="name" required [ngClass]="{ 'is-invalid': submitted && f.DueDate.errors }">
+                  id="name" required [ngClass]="{ 'is-invalid': submitted && f.DueDate.errors }"
+                  >
                 <div *ngIf="submitted && f.DueDate.errors" class="invalid-feedback">
                   <div *ngIf="f.DueDate.errors.required">DueDate is required</div>
                 </div>

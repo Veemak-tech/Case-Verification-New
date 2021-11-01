@@ -124,7 +124,7 @@ module.exports = class casedetails {
   }
 
   static getpagingbyusername(pageno,pagesize,username){
-    debugger
+  //  debugger
     return db.execute('CALL GetCasebyLoggedUsername(?,?,?)',[pageno,pagesize,username])
   }
 

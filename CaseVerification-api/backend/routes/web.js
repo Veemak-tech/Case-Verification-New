@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const controller = require("../controllers/file.controller");
+const uploadController = require("../middleware/multiUploadController");
 
 let routes = (app) => {
   router.post("/upload", controller.upload);
+  router.post("/multiple-upload", uploadController.multipleUpload);
   router.get("/files", controller.getListFiles);
   router.get("/files/:name", controller.download);
 

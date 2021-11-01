@@ -31,9 +31,10 @@ exports.searchcase = async (req,res,next) => {
 }
 
 exports.fetchAll = async (req, res, next) => {
+  debugger
   try {
     const [allPosts] = await casedetails.fetchAll();
-    res.status(200).json(allPosts);
+    res.status(200).json(allPosts[0]);
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -188,7 +189,7 @@ exports.getpaging = async (req, res, next) => {
 };
 
 exports.getpagingbyuserlogged = async (req, res, next) => {
-  debugger
+  // debugger
   try {
      // get page from query params or default to first page
     const pageno = parseInt(req.query.pageno) || 1;
@@ -421,7 +422,7 @@ exports.deletePost = async (req, res, next) => {
 //------------------------------------------------Case Details Update---------------------------------------------
 exports.putCasedetails = async (req, res, next) => {
   try {
-     debugger;
+    //  debugger;
      var lastModDate = moment().format('YYYY-MM-DD HH:mm:ss');
     const putResponse = {
       CaseID: req.body.CaseID,
@@ -437,9 +438,10 @@ exports.putCasedetails = async (req, res, next) => {
     };
 
     const result = await casedetails.update(putResponse);
-    console.log("Case Details Updated!!!!",putResponse);
+    //console.log("Case Details Updated!!!!",putResponse);
+    console.log("full case details..::", req.body)
 
-    console.log(result[0].insertId);
+   // console.log(result[0].insertId);
     var caseid = result[0].insertId;
 
     var insureraddressidput = result[0].insertId;
@@ -456,7 +458,7 @@ exports.putCasedetails = async (req, res, next) => {
      updateinsurardetails["AddressID"]=req.body.insDetails.I_AddressID
 
     const insurerput = await insurerdetails.update(updateinsurardetails);
-    console.log("Insurer Details Updated!!",insurerput);
+   // console.log("Insurer Details Updated!!",insurerput);
 
     //------------------------------------------------- Insurer Address Update----------------------------------------
     var updateinsaddress = req.body.insAddress;
@@ -470,7 +472,7 @@ exports.putCasedetails = async (req, res, next) => {
      updateinsaddress["Landmark"]=req.body.insAddress.I_Landmark
 
     const insaddressput = await Address.updateinsurerAddress(updateinsaddress);
-    console.log("Insurer Address Updated!!",insaddressput);
+   // console.log("Insurer Address Updated!!",insaddressput);
 
 
     //------------------------------------ thirdparty details Update---------------------------------------------
@@ -484,7 +486,7 @@ exports.putCasedetails = async (req, res, next) => {
     updateTpartydet["T_VerificationNotes"]=req.body.tpartyDetails.T_VerificationNotes
 
     const tpartydetput = await thirdpartydetails.updatetpartydetails(updateTpartydet);
-    console.log("Third party details Updated!!!",updateTpartydet);
+   // console.log("Third party details Updated!!!",updateTpartydet);
 
     // ---------------------------------------------tparty address Update-----------------------------------
     var updatetpartyAddress = req.body.tpartyAddress;
@@ -498,13 +500,13 @@ exports.putCasedetails = async (req, res, next) => {
     updatetpartyAddress["Landmark"]=req.body.tpartyAddress.T_Landmark
 
     const tpartyaddressput = await Address.updatetpAddress(updatetpartyAddress);
-    console.log("Thirdparty Address Updated!!",updatetpartyAddress);
+  //  console.log("Thirdparty Address Updated!!",updatetpartyAddress);
 
-     res.status(200).json(putResponse);
+     res.status(200).json(req.body);
 
    
      var updateinsanswers = req.body.insanswers;
-     // var updatetpanswers = req.body.tpanswers;
+      var updatetpanswers = req.body.tpanswers;
 
      updateinsanswers.forEach ( function insanswer (item){
 
@@ -527,16 +529,16 @@ exports.putCasedetails = async (req, res, next) => {
      const updatestatus = await assignments.updatestatusInprogress(statuschange)
 
 
-    //  updatetpanswers.forEach ( function insanswer (item){
+     updatetpanswers.forEach ( function tpanswer (item){
 
-    //   //console.log(item)
+      //console.log(item)
 
-    //   item['CaseID'] = req.body.CaseID,
-    //   item['CreatedBy'] = req.body.Name,
-    //   item['LastModifiedBy'] = req.body.Name
+      item['CaseID'] = req.body.CaseID,
+      item['CreatedBy'] = req.body.Name,
+      item['LastModifiedBy'] = req.body.Name
     
-    //   const updateansresult = casedetails.updateQnAnswers(item)
-    //  })
+      const updateansresult = casedetails.updateQnAnswers(item)
+     })
   
   } catch (err) {
     if (!err.statusCode) {

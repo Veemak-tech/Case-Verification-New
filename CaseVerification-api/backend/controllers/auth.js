@@ -217,6 +217,7 @@ exports.login = async (req, res, next) => {
 };
 
   exports.Adminlogin = async (req, res, next) => {
+    debugger
     const email = req.body.email;
     const password = req.body.password;
     

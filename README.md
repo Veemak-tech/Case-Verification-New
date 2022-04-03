@@ -1,10 +1,10 @@
 # Case-Verification-New
 Case Verification New 08 Aug 2021
---- Case Verification ---
+⭐⭐--- Case Verification ---⭐⭐
 Requirements:
-  Angular >10
-  Node Js
-  MySQL
+  Angular >10,
+  Node Js,
+  MySQL.
   
 
 step 1 :

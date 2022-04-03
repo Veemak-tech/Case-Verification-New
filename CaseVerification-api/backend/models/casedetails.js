@@ -36,7 +36,7 @@ module.exports = class casedetails {
   // ins answers
 
   static postQanswers(insurerAns){
-    debugger
+    // debugger
     return db.execute(
       "INSERT INTO questionanswers (questionid, answerintext, CaseID, CreatedBy, LastModifiedBy) VALUES (?,?,?,?,?)",
       [

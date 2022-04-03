@@ -173,7 +173,7 @@ exports.Update = async (req, res, next) => {
 
 // agent login 
 exports.login = async (req, res, next) => {
-  debugger
+  // debugger
   const email = req.body.email;
   const password = req.body.password;
   try {

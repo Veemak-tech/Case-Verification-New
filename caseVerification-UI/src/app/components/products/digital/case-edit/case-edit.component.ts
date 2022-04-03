@@ -139,6 +139,7 @@ export class CaseEditComponent implements OnInit, OnDestroy {
 
     this.caseservice.getByID(ID).subscribe((data: casedetails) => {
       // console.log(data);
+      debugger
       this.case = data[0];
       debugger;
       this.EditForm = new FormGroup({
@@ -468,6 +469,7 @@ export class CaseEditComponent implements OnInit, OnDestroy {
 
      var editformcontrols = this.EditForm.controls
 
+     // Ins Ans Array
      this.answerdataarray.forEach(element => {
        insansdata.push({
          answerintext: this.EditForm.get(element.questionname).value,
@@ -483,6 +485,8 @@ export class CaseEditComponent implements OnInit, OnDestroy {
          }
        })
      })
+
+     // Tparty Ans Array
 
 
       editformdata["iansarray"] = insansdata;

@@ -322,7 +322,7 @@ export class CaseAssignComponent implements OnInit {
       },
 
       username: {
-        title: 'Assign to',
+        title: 'Employee',
         filter: {
           type: '',
           config: {

@@ -67,7 +67,7 @@ export class CasedetailsService {
     const formData: FormData = new FormData();
 
 
-    formData.append('file', file);
+    formData.append('', file);
 
     const req = new HttpRequest('POST', `${environment.rooturl}/upload`, formData, {
       reportProgress: true,

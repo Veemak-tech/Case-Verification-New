@@ -31,7 +31,7 @@ exports.searchcase = async (req,res,next) => {
 }
 
 exports.fetchAll = async (req, res, next) => {
-  debugger
+  // debugger
   try {
     const [allPosts] = await casedetails.fetchAll();
     res.status(200).json(allPosts[0]);
@@ -422,7 +422,7 @@ exports.deletePost = async (req, res, next) => {
 //------------------------------------------------Case Details Update---------------------------------------------
 exports.putCasedetails = async (req, res, next) => {
   try {
-    //  debugger;
+      // debugger;
      var lastModDate = moment().format('YYYY-MM-DD HH:mm:ss');
     const putResponse = {
       CaseID: req.body.CaseID,
@@ -506,7 +506,7 @@ exports.putCasedetails = async (req, res, next) => {
 
    
      var updateinsanswers = req.body.insanswers;
-      var updatetpanswers = req.body.tpanswers;
+     var updatetpanswers = req.body.tpanswers;
 
      updateinsanswers.forEach ( function insanswer (item){
 
@@ -529,16 +529,16 @@ exports.putCasedetails = async (req, res, next) => {
      const updatestatus = await assignments.updatestatusInprogress(statuschange)
 
 
-     updatetpanswers.forEach ( function tpanswer (item){
+    //  updatetpanswers.forEach ( function tpanswer (item){
 
-      //console.log(item)
+    //   //console.log(item)
 
-      item['CaseID'] = req.body.CaseID,
-      item['CreatedBy'] = req.body.Name,
-      item['LastModifiedBy'] = req.body.Name
+    //   item['CaseID'] = req.body.CaseID,
+    //   item['CreatedBy'] = req.body.Name,
+    //   item['LastModifiedBy'] = req.body.Name
     
-      const updateansresult = casedetails.updateQnAnswers(item)
-     })
+    //   const updateansresult = casedetails.updateQnAnswers(item)
+    //  })
   
   } catch (err) {
     if (!err.statusCode) {
